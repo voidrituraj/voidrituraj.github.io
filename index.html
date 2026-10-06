@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Text Formatter & Cleaner</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #0f172a;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #1e293b;
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            height: 250px;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 16px;
+            resize: vertical;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        button.secondary {
+            background-color: #64748b;
+        }
+
+        button.secondary:hover {
+            background-color: #475569;
+        }
+
+        .stats {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #64748b;
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Placeholder space for your Google AdSense */
+        .ad-space {
+            width: 100%;
+            max-width: 800px;
+            height: 90px;
+            background: #e2e8f0;
+            border: 2px dashed #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 14px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Quick Text Formatter</h1>
+        
+        <textarea id="textInput" placeholder="Paste or type your messy text here..."></textarea>
+        
+        <div class="stats">
+            <span id="charCount">Characters: 0</span>
+            <span id="wordCount">Words: 0</span>
+        </div>
+
+        <div class="controls">
+            <button onclick="transformText('upper')">UPPERCASE</button>
+            <button onclick="transformText('lower')">lowercase</button>
+            <button onclick="transformText('cleanSpaces')">Fix Extra Spaces</button>
+            <button class="secondary" onclick="copyText()">Copy Text</button>
+            <button class="secondary" onclick="clearText()">Clear All</button>
+        </div>
+    </div>
+
+    <!-- Monetization Area: Put your Google AdSense code here later -->
+    <div class="ad-space">
+        [ Google AdSense Display Banner Space ]
+    </div>
+
+    <script>
+        const textarea = document.getElementById('textInput');
+        const charCount = document.getElementById('charCount');
+        const wordCount = document.getElementById('wordCount');
+
+        // Update stats automatically as user types
+        textarea.addEventListener('input', updateStats);
+
+        function updateStats() {
+            const text = textarea.value;
+            charCount.innerText = `Characters: ${text.length}`;
+            
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+            wordCount.innerText = `Words: ${words.length}`;
+        }
+
+        function transformText(action) {
+            let currentText = textarea.value;
+
+            if (action === 'upper') {
+                textarea.value = currentText.toUpperCase();
+            } else if (action === 'lower') {
+                textarea.value = currentText.toLowerCase();
+            } else if (action === 'cleanSpaces') {
+                // Removes extra spacing between words and trims edges
+                textarea.value = currentText.replace(/\s+/g, ' ').trim();
+            }
+            updateStats();
+        }
+
+        function clearText() {
+            textarea.value = '';
+            updateStats();
+        }
+
+        function copyText() {
+            textarea.select();
+            navigator.clipboard.writeText(textarea.value);
+            alert('Text copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
