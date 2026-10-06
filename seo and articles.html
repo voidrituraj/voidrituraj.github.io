@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Text Formatter & Cleaner | Free Online Text Editor & Copywriter Guide</title>
+    <meta name="description" content="Free online text formatter tool. Easily count characters and words, convert to uppercase or lowercase, fix extra spaces, and read our master data cleaning guides.">
+    <meta name="keywords" content="text formatter, text cleaner, word counter, character counter, data cleaning excel, remove spaces online">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://voidrituraj.github.io/">
+
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --primary-color: #007bff;
+            --primary-hover: #0056b3;
+            --danger-color: #dc3545;
+            --danger-hover: #bd2130;
+            --border-color: #cccccc;
+            --tab-bg: #e9ecef;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --border-color: #444444;
+            --tab-bg: #2d2d2d;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        header, main, footer, section {
+            width: 100%;
+            max-width: 850px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        header h1 { margin: 0; font-size: 24px; color: var(--text-color); }
+        
+        .theme-toggle {
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .container {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 180px;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 2px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 16px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            resize: vertical;
+            margin-bottom: 15px;
+        }
+
+        .counter-row {
+            display: flex;
+            gap: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .button-group { display: flex; flex-wrap: wrap; gap: 10px; }
+
+        button {
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-primary { background-color: var(--primary-color); color: white; }
+        .btn-primary:hover { background-color: var(--primary-hover); }
+        .btn-danger { background-color: var(--danger-color); color: white; }
+        .btn-danger:hover { background-color: var(--danger-hover); }
+
+        .adsense-space {
+            background: var(--tab-bg);
+            border: 1px dashed var(--border-color);
+            text-align: center;
+            padding: 20px;
+            margin: 20px 0;
+            color: var(--text-color);
+            font-size: 14px;
+            border-radius: 6px;
+        }
+
+        /* Tabs Panel Configuration */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        .tab-btn {
+            background: var(--tab-bg);
+            color: var(--text-color);
+            border-radius: 4px 4px 0 0;
+            padding: 10px 14px;
+            font-size: 13px;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .blog-content {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .blog-page { display: none; }
+        .blog-page.active { display: block; }
+
+        .blog-page h2 { margin-top: 0; color: var(--primary-color); }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 14px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 20px;
+        }
+
+        footer a { color: var(--primary-color); text-decoration: none; margin: 0 10px; }
+        footer a:hover { text-decoration: underline; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>
+            <h1>Quick Text Formatter & Cleaner</h1>
+            <p style="margin: 5px 0 0 0; font-size: 14px; color: #777;">Format, clean, and optimize your production copy.</p>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Mode</button>
+    </header>
+
+    <div class="adsense-space">[ Google AdSense Display Banner Space ]</div>
+
+    <main>
+        <!-- Core Text Formatter App Utility Container -->
+        <div class="container">
+            <textarea id="textInput" placeholder="Type or paste your text workspace copy here..."></textarea>
+            
+            <div class="counter-row">
+                <span id="charCount">Characters: 0</span>
+                <span id="wordCount">Words: 0</span>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-primary" onclick="convertCase('upper')">UPPERCASE</button>
+                <button class="btn-primary" onclick="convertCase('lower')">lowercase</button>
+                <button class="btn-primary" onclick="fixSpaces()">Fix Extra Spaces</button>
+                <button class="btn-primary" onclick="copyText()">Copy Text</button>
+                <button class="btn-danger" onclick="clearAll()">Clear All</button>
+            </div>
+        </div>
+        <!-- SEO Content Hub Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab(event, 'guide')">User Guide</button>
+            <button class="tab-btn" onclick="switchTab(event, 'blog1')">Fix Spaces Guide</button>
+            <button class="tab-btn" onclick="switchTab(event, 'blog2')">Excel Clean Tips</button>
+            <button class="tab-btn" onclick="switchTab(event, 'blog3')">Email Case Prep</button>
+            <button class="tab-btn" onclick="switchTab(event, 'blog4')">Copywriter Hub</button>
+        </div>
+
+        <!-- Educational Article Display Containers -->
+        <div class="blog-content">
+            <div id="guide" class="blog-page active">
+                <h2>How to Use the Text Formatter</h2>
+                <p>Paste text into the workspace to view real-time counts and use tools for uppercase, lowercase, spacing fixes, and clipboard actions.</p>
+            </div>
+            <div id="blog1" class="blog-page">
+                <h2>How to Clean and Fix Extra Spaces</h2>
+                <p>Easily remove unwanted gaps, hard line breaks, and hidden tab spaces caused by copying from PDFs or code editors.</p>
+            </div>
+            <div id="blog2" class="blog-page">
+                <h2>Master Data Cleaning for Excel</h2>
+                <p>Standardize text strings and remove trailing spaces to prevent formula errors and broken CSV imports.</p>
+            </div>
+            <div id="blog3" class="blog-page">
+                <h2>Lowercase Conversion for Email Marketing</h2>
+                <p>Prevent syntax errors and protect sender reputation by cleaning erratic capitalization and trailing spaces in subscriber lists.</p>
+            </div>
+            <div id="blog4" class="blog-page">
+                <h2>The Copywriter’s Guide</h2>
+                <p>Strip hidden HTML metadata and rich text formatting when moving content between applications like Google Docs and your CMS.</p>
+            </div>
+        </div>
+
+        <!-- Compliance Panels -->
+        <section id="privacyPolicy" class="info-section hidden">
+            <h2>Privacy Policy</h2>
+            <p>Processing occurs locally in your browser. Standard cookies are used for analytics and ads.</p>
+            <button class="btn-primary" onclick="toggleSection('privacyPolicy')">Close</button>
+        </section>
+
+        <section id="termsOfService" class="info-section hidden">
+            <h2>Terms of Service</h2>
+            <p>Provided on an "As-Is" operational framework without implied warranties.</p>
+            <button class="btn-primary" onclick="toggleSection('termsOfService')">Close</button>
+        </section>
+    </main>
+
+    <div class="adsense-space">[ Google AdSense Display Banner Space ]</div>
+
+    <footer>
+        <p>&copy; 2026 Quick Text Formatter. All Rights Reserved.</p>
+        <p>
+            <a href="#" onclick="toggleSection('privacyPolicy'); return false;">Privacy Policy</a> | 
+            <a href="#" onclick="toggleSection('termsOfService'); return false;">Terms of Service</a>
+        </p>
+    </footer>
+
+    <!-- JavaScript Execution Engine -->
+    <script>
+        const textInput = document.getElementById('textInput');
+        const charCount = document.getElementById('charCount');
+        const wordCount = document.getElementById('wordCount');
+
+        textInput.addEventListener('input', () => {
+            const text = textInput.value;
+            charCount.textContent = `Characters: ${text.length}`;
+            const words = text.trim().split(/\s+/).filter(item => item.length > 0);
+            wordCount.textContent = `Words: ${words.length}`;
+        });
+
+        function convertCase(type) {
+            if (type === 'upper') textInput.value = textInput.value.toUpperCase();
+            else if (type === 'lower') textInput.value = textInput.value.toLowerCase();
+            textInput.dispatchEvent(new Event('input'));
+        }
+
+        function fixSpaces() {
+            textInput.value = textInput.value.replace(/\s+/g, ' ').trim();
+            textInput.dispatchEvent(new Event('input'));
+        }
+
+        function copyText() {
+            if (!textInput.value) return;
+            navigator.clipboard.writeText(textInput.value);
+            alert("Text copied to clipboard!");
+        }
+
+        function clearAll() {
+            textInput.value = '';
+            textInput.dispatchEvent(new Event('input'));
+        }
+
+        function toggleSection(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('hidden');
+            if (!el.classList.contains('hidden')) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function switchTab(event, tabId) {
+            document.querySelectorAll('.blog-page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        function toggleTheme() {
+            if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        }
+    </script>
+</body>
+</html>
